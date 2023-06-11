@@ -16,6 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.NumberFormat
 import java.util.Locale
+import kotlin.random.Random
 
 class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdapterCallback {
 
@@ -23,14 +24,16 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
     private lateinit var txtTotalUang: TextView
     private lateinit var desc:TextView
     private lateinit var btnNext: Button
-    var totalBerat: Double = 0.0
+    var totalBerat: Float = 0.0f
     val localeID = Locale("id", "ID")
     val currencyFormat: NumberFormat = NumberFormat.getCurrencyInstance(localeID)
-    private lateinit var gridList: List<ItemModel>
+    private var gridList: List<ItemModel>? = null
     private lateinit var gridAdapter: GridCalculationAdapter
     private lateinit var grid: GridView
     val apiService = ApiClient.apiService
-    lateinit var serviceList:List<ServiceModel>
+    var serviceList:List<ServiceModel>? = null
+    var totalWeight:Float? = 0.0f
+    val orderId = "order" + generateRandomNumbers()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +54,7 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
 
         gridList = ArrayList()
 
-        txtTotalUang.text = "0.0 Kg\t" + currencyFormat.format(0L)
+        txtTotalUang.setText("0.0 Kg\t" + currencyFormat.format(0L))
 
         if (bundle != null) {
             service.text = bundle.getString("service")
@@ -59,8 +62,7 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
             if (service_id != null) {
                 getService(service_id)
                 getAllItems(service_id)
-
-            } else {
+            }else{
                 finish()
             }
         }
@@ -69,6 +71,8 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
 //            val intent = Intent(this,ConfirmActivity::class.java)
 //            startActivity(intent)
             gridAdapter.Result()
+            showMessage(gridAdapter.getTotalWeight().toString())
+            txtTotalUang.text = "${gridAdapter.getTotalWeight()} Kg\t${currencyFormat.format(((gridAdapter.getTotalWeight().toInt() / 4) + 1) * 12000L)}"
 
         }
     }
@@ -83,7 +87,7 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
                     serviceList = response.body()!!
                     val message = "Berhasil"
                     showMessage(message)
-                    serviceList.forEach {
+                    serviceList!!.forEach {
                         desc.text = "${it.desc}\n"
                     }
                 }else{
@@ -113,7 +117,7 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
                     items.let {
                         gridList = it
 
-                        gridAdapter = GridCalculationAdapter(gridList,this@CalculationActivity,this@CalculationActivity)
+                        gridAdapter = GridCalculationAdapter(gridList!!,this@CalculationActivity,this@CalculationActivity)
                         grid.adapter = gridAdapter
                     }
                 }else{
@@ -130,28 +134,32 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
         })
     }
 
-    fun hitungTotal(berat: Double, operasi: Int) {
-        val totalUang: Long
-        if (operasi == 1) {
-            totalBerat += berat
-            totalUang = (((totalBerat.toInt() / 4) + 1) * 12000).toLong()
-            txtTotalUang.text =
-                "${String.format("%.2f", totalBerat)} Kg\t" + currencyFormat.format(totalUang)
-        } else {
-//            totalBerat = totalBerat - berat
-            if (totalBerat - berat > 0.0) {
-                totalBerat -= berat
-                totalUang = (((totalBerat.toInt() / 4) + 1) * 12000).toLong()
-                txtTotalUang.text =
-                    "${String.format("%.2f", totalBerat)} Kg\t" + currencyFormat.format(totalUang)
-            } else {
-                txtTotalUang.text = "0.0 Kg\t" + currencyFormat.format(0L)
-            }
-        }
-    }
+//    fun hitungTotal(berat: Double, operasi: Int) {
+//        val totalUang: Long
+//        if (operasi == 1) {
+//            totalBerat += berat
+//            totalUang = (((totalBerat.toInt() / 4) + 1) * 12000).toLong()
+//            txtTotalUang.text =
+//                "${String.format("%.2f", totalBerat)} Kg\t" + currencyFormat.format(totalUang)
+//        } else {
+////            totalBerat = totalBerat - berat
+//            if (totalBerat - berat > 0.0) {
+//                totalBerat -= berat
+//                totalUang = (((totalBerat.toInt() / 4) + 1) * 12000).toLong()
+//                txtTotalUang.text =
+//                    "${String.format("%.2f", totalBerat)} Kg\t" + currencyFormat.format(totalUang)
+//            } else {
+//                txtTotalUang.text = "0.0 Kg\t" + currencyFormat.format(0L)
+//            }
+//        }
+//    }
 
     fun showMessage(message:String){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun setTotalWeight(){
+        txtTotalUang.text = "${gridAdapter.getTotalWeight()} Kg\t${currencyFormat.format(((gridAdapter.getTotalWeight().toInt() / 4) + 1) * 12000L)}"
     }
 
     override fun onDeleteService(service_id: String) {
@@ -164,6 +172,22 @@ class CalculationActivity : AppCompatActivity(), GridCalculationAdapter.GridAdap
 
     override fun showResult(message: String) {
         showMessage(message)
+    }
+
+    override fun total() {
+        txtTotalUang.text = "${gridAdapter.getTotalWeight()} Kg\t${currencyFormat.format(((gridAdapter.getTotalWeight().toInt() / 4) + 1) * 12000L)}"
+    }
+
+    fun generateRandomNumbers(): String {
+        val random = Random(System.currentTimeMillis())
+        var result = ""
+
+        repeat(3) {
+            val randomNumber = random.nextInt(10)
+            result = result + randomNumber
+        }
+
+        return result
     }
 
 
