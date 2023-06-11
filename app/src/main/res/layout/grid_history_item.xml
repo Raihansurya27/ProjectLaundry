@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardGrid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="6dp"
+    android:padding="6dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="6dp">
+
+
+        <TextView
+            android:id="@+id/entryCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#Cuci1"
+            android:textColor="#069FCD"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:id="@+id/dateReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/04/2023"
+            android:textStyle="italic"
+            android:textColor="#11BEF3"
+            android:textSize="14sp"
+            android:layout_below="@id/entryCode"
+            android:layout_marginStart="5dp" />
+
+        <TextView
+            android:id="@+id/service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="(Mencuci saja)"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/entryCode"
+            android:layout_marginStart="5dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/buttonDesc"
+            android:text="Detail"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

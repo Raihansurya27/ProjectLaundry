@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activitity.ConfirmActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Riwayat Cucian #Cucian1"
+            android:id="@+id/txtTitle"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTitle"
+            android:id="@+id/cardConfirm"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
+            android:padding="10dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama:\nMuhammad Raihan Surya"
+                    android:id="@+id/textName"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Hp:\n081234567890"
+                    android:id="@+id/textPhone"
+                    android:layout_below="@id/textName"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat:\nJl. Cupak Tangah"
+                    android:id="@+id/textAddress"
+                    android:layout_below="@id/textPhone"
+                    android:layout_marginBottom="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:id="@+id/line1"
+                    android:background="@drawable/line"
+                    android:layout_below="@id/textAddress"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terima:\t\t12/04/2023"
+                    android:id="@+id/textReceive"
+                    android:layout_below="@id/line1"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selesai:\t\t12/05/2023"
+                    android:id="@+id/textDone"
+                    android:layout_below="@id/textReceive"
+                    android:layout_marginBottom="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:id="@+id/line2"
+                    android:background="@drawable/line"
+                    android:layout_below="@id/textDone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rincian Layanan"
+                    android:id="@+id/textDesc"
+                    android:layout_below="@id/line2"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textCloth"
+                    android:layout_below="@id/textDesc"
+                    android:text="Ini rinciannya"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textClothSum"
+                    android:layout_below="@id/textDesc"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:text="disini jumlah baju"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalCloth"
+                    android:layout_below="@id/textCloth"
+                    android:text="Ini total berat baju"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalClothSum"
+                    android:layout_below="@id/textClothSum"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:text="disini jumlah berat baju"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textService"
+                    android:text="Cuci biasa"
+                    android:layout_below="@id/textTotalCloth"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textServicePrice"
+                    android:text="Rp.12000"
+                    android:layout_below="@id/textTotalClothSum"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:id="@+id/line3"
+                    android:background="@drawable/line"
+                    android:layout_below="@id/textService"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textSubtotal"
+                    android:text="Subtotal"
+                    android:layout_below="@id/line3"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textSubtotalPrice"
+                    android:text="Rp.12000"
+                    android:layout_below="@id/line3"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textDeliverService"
+                    android:text="Layanan Antar Jemput"
+                    android:layout_below="@id/textSubtotal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textDeliverServicePrice"
+                    android:text="Rp.0"
+                    android:layout_below="@id/textSubtotal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textDiscount"
+                    android:text="Diskon"
+                    android:layout_below="@id/textDeliverService"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textDiscountPrice"
+                    android:text="Rp.0"
+                    android:layout_below="@id/textDeliverServicePrice"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textPax"
+                    android:text="Pajak"
+                    android:layout_below="@id/textDiscount"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textPaxPrice"
+                    android:text="Rp.0"
+                    android:layout_below="@id/textDiscountPrice"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:id="@+id/line4"
+                    android:background="@drawable/line"
+                    android:layout_below="@id/textPax"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotal"
+                    android:text="Total Biaya"
+                    android:layout_below="@id/line4"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalPrice"
+                    android:text="Rp.0"
+                    android:layout_below="@id/line4"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalPayment"
+                    android:text="Pembayaran"
+                    android:layout_below="@id/textTotal"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalPaymentPrice"
+                    android:text="Rp.0"
+                    android:layout_below="@id/textTotalPrice"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalBack"
+                    android:text="Kembalian"
+                    android:layout_below="@id/textTotalPayment"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textTotalBackPrice"
+                    android:text="Rp.0"
+                    android:layout_below="@id/textTotalPaymentPrice"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"/>
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</ScrollView>

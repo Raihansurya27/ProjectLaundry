@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProjectLaundry"
+        tools:targetApi="31" >
+        <activity
+            android:name=".activitity.service.UpdateServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.item.UpdateItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.item.NewItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.item.ItemActivity"
+            android:exported="false" >
+
+
+        </activity>
+        <activity
+            android:name=".activitity.account.UpdateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.account.NewAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.account.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.service.NewServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.service.ServiceActivity"
+            android:exported="false" >
+
+
+        </activity>
+        <activity
+            android:name=".activitity.SalesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.ConfirmActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.AdminActivity"
+            android:exported="false" >
+
+        </activity>
+        <activity
+            android:name=".activitity.CalculationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitity.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.ProjectLaundry.NoActionBar" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activitity.SlideActivity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activitity.SplashActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+        </activity>
+        <activity
+            android:name=".activitity.RegisterActivity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activitity.LoginActivity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+    </application>
+
+</manifest>
