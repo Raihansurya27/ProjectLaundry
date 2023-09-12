@@ -176,7 +176,7 @@ class NewServiceActivity : AppCompatActivity() {
     }
 
     private fun registerService() {
-//        val intent = Intent(this, ServiceActivity::class.java)
+        val intent = Intent(this, ServiceActivity::class.java)
         val name = editName.text.toString()
         val price = editPrice.text.toString()
         val perKg = editPerKg.text.toString()
@@ -212,15 +212,20 @@ class NewServiceActivity : AppCompatActivity() {
 //                        progBar.visibility = View.GONE
                         val apiResponse = response.body()
                         // Proses respons dari server
-//                        setLayout(service_id,itemId)
+                        itemId.forEach{
+                            setLayout(service_id,it)
+                        }
                         val message = apiResponse!!.message
                         showMessage(message)
+                        startActivity(intent)
+                        finish()
 
                     } else {
                         // Tangani kesalahan saat komunikasi dengan server
                         progBar.visibility = View.GONE
                         var message = "Error 1: " + response.body() + " " + response.body()
                         showMessage(message)
+                        finish()
                     }
                 }
 

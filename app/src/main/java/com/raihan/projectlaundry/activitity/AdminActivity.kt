@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.raihan.projectlaundry.R
 import com.raihan.projectlaundry.activitity.account.AccountActivity
+import com.raihan.projectlaundry.activitity.history.HistoryActivity
 import com.raihan.projectlaundry.activitity.item.ItemActivity
 import com.raihan.projectlaundry.activitity.service.ServiceActivity
 import com.raihan.projectlaundry.api.ApiClient
-import com.raihan.projectlaundry.model.SalesToday
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +24,7 @@ class AdminActivity : AppCompatActivity() {
     val apiService = ApiClient.apiService
     val localeID = Locale("id", "ID")
     val currencyFormat: NumberFormat = NumberFormat.getCurrencyInstance(localeID)
-    lateinit var txtSalesTotal :TextView
+    lateinit var txtSalesTotal: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
@@ -37,6 +37,7 @@ class AdminActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.title = "Halaman Admin"
+        getSalesToday()
 
         salesPage.setOnClickListener {
             val intent = Intent(this, SalesActivity::class.java)
@@ -56,31 +57,34 @@ class AdminActivity : AppCompatActivity() {
             startActivity(account)
         }
         historyPage.setOnClickListener {
-//            val intent = Intent(this, ServiceActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    fun getSalesToday(){
-        apiService.getTodaySale().enqueue(object :Callback<List<SalesToday>>{
+    fun getSalesToday() {
+        apiService.getTodaySale().enqueue(object : Callback<Int> {
             override fun onResponse(
-                call: Call<List<SalesToday>>,
-                response: Response<List<SalesToday>>
+                call: Call<Int>,
+                response: Response<Int>
             ) {
-                if(response.isSuccessful){
-                    val sales = response.body()!!
-                    sales.forEach {
-                        "Rp." + currencyFormat.format(it.price.toLong())
+                if (response.isSuccessful) {
+                    val sales = response.body()
+                    if (sales != null) {
+                        txtSalesTotal.text = currencyFormat.format(sales.toLong())
+                    }else{
+                        txtSalesTotal.text = currencyFormat.format(0L)
                     }
-                }else{
+                } else {
                     val message = "Error : ${response.body()}"
                     showMessage(message)
-                    "Rp." + currencyFormat.format(0L)
+                    txtSalesTotal.text = currencyFormat.format(0L)
                 }
             }
 
-            override fun onFailure(call: Call<List<SalesToday>>, t: Throwable) {
+            override fun onFailure(call: Call<Int>, t: Throwable) {
                 val message = "Error : $t"
+                txtSalesTotal.text = "Rp." + currencyFormat.format(0L)
                 showMessage(message)
             }
 
@@ -93,7 +97,7 @@ class AdminActivity : AppCompatActivity() {
         return true
     }
 
-    fun logout(){
+    fun logout() {
         // Hapus data sesi atau lakukan operasi logout lainnya di sini
 
         // Contoh: Menghapus data sesi
@@ -110,21 +114,20 @@ class AdminActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
-        R.id.action_settings ->{
+        R.id.action_settings -> {
 
             true
         }
-        R.id.action_logout ->{
+
+        R.id.action_logout -> {
             logout()
             true
         }
-        R.id.action_coba2 ->{
-            true
-        }
+
         else -> super.onOptionsItemSelected(item)
     }
 
-    fun showMessage(message:String){
+    fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

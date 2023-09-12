@@ -18,12 +18,19 @@ import com.google.android.material.navigation.NavigationView
 import com.raihan.projectlaundry.R
 import com.raihan.projectlaundry.api.ApiClient
 import com.raihan.projectlaundry.databinding.ActivityMainBinding
+import com.raihan.projectlaundry.model.UserModel
+import retrofit2.Call
+import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     val apiService = ApiClient.apiService
+    var phoneNumberResult = ""
+    var usernameResult = ""
+    var addressResult = ""
+    var pictureResult = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,36 +58,56 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
         val bundle :Bundle? = intent.extras
 
         if(bundle != null){
-            val phoneNumberResult = bundle.getString("phone_number")
-            val usernameResult = bundle.getString("username")
-            val addressResult = bundle.getString("address")
-            val pictureResult = bundle.getString("picture")
+            phoneNumberResult = bundle.getString("phone_number").toString()
+//            usernameResult = bundle.getString("username").toString()
+//            addressResult = bundle.getString("address").toString()
+//            pictureResult = bundle.getString("picture").toString()
 
-            phoneNumber.text = phoneNumberResult.toString()
-            username.text = usernameResult.toString()
-            address.text = addressResult.toString()
+            apiService.getUser(phoneNumber.text.toString()).enqueue(object :
+                retrofit2.Callback<List<UserModel>> {
+                override fun onResponse(
+                    call: Call<List<UserModel>>,
+                    response: Response<List<UserModel>>
+                ) {
+                    if (response.isSuccessful) {
+                        val data: List<UserModel>? = response.body()
+                        val bundle = Bundle()
+                        data!!.forEach { item ->
+                            usernameResult = item.username
+                            addressResult = item.address
+                            pictureResult = "https://laundrynajmi.000webhostapp.com/${item.picture}"
+                        }
+
+                    } else {
+
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserModel>>, t: Throwable) {
+                    // Tangani kegagalan pemanggilan API
+                }
+            })
+
+            phoneNumber.text = phoneNumberResult
+            username.text = usernameResult
+            address.text = addressResult
             Glide
                 .with(this)
                 .load(pictureResult)
                 .into(imageProfile)
 
-//            val fragmentList = supportFragmentManager.fragments
-//            for (fragment in fragmentList) {
-//                if (fragment is GalleryFragment) {
-//                    fragment.arguments = bundle
-//                    navController.navigate(fragment, bundle)
-//                }
-//            }
 
+            navController.navigate(R.id.nav_home, bundle)
         }
 
     }
@@ -121,9 +148,6 @@ class MainActivity : AppCompatActivity() {
         }
         R.id.action_logout->{
             logout()
-            true
-        }
-        R.id.action_coba2->{
             true
         }
         else -> super.onOptionsItemSelected(item)

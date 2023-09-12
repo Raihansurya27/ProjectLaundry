@@ -1,12 +1,12 @@
 package com.raihan.projectlaundry.api
 
 import com.raihan.projectlaundry.model.ApiResponse
+import com.raihan.projectlaundry.model.HistoryModel
 import com.raihan.projectlaundry.model.ItemModel
 import com.raihan.projectlaundry.model.LayoutModel
 import com.raihan.projectlaundry.model.LoginModel
 import com.raihan.projectlaundry.model.OrderDetailModel
 import com.raihan.projectlaundry.model.OrderModel
-import com.raihan.projectlaundry.model.SalesToday
 import com.raihan.projectlaundry.model.ServiceModel
 import com.raihan.projectlaundry.model.UserModel
 import okhttp3.MultipartBody
@@ -49,6 +49,9 @@ interface ApiService {
     @GET("/getuserorder.php")
     fun getUserOrder(@Query("order_id") order_id: String): Call<List<OrderModel>>
 
+    @GET("/getalldoingorder.php")
+    fun getAllDoingOrder(): Call<List<HistoryModel>>
+
     @GET("/getuserorderdetail.php")
     fun getUserOrderDetail(@Query("order_id") order_id: String): Call<List<OrderModel>>
 
@@ -60,13 +63,17 @@ interface ApiService {
         @Field("service_id") service_id: String,
         @Field("status") status: String,
         @Field("total_price") total_price: Int,
-        @Field("total_weight") total_weight: Int,
+        @Field("total_weight") total_weight: Float,
+        @Field("discount") discount: Int,
+        @Field("after_discount") after_discount: Int,
+        @Field("pick_up") pick_up: String,
+        @Field("drop_off") drop_off: String,
     ): Call<ApiResponse>
 
     @POST("/insertorderdetail.php")
     @FormUrlEncoded
     fun insertOrderDetail(
-        @Field("order_id") service_id: String,
+        @Field("order_id") order_id: String,
         @Field("item_id") item_id: String,
         @Field("quantity") quantity: Int,
     ): Call<ApiResponse>
@@ -185,11 +192,11 @@ interface ApiService {
     @Multipart
     @POST("/insertservice.php")
     fun insertService(
-        @Part("service_id") service_id: RequestBody,
-        @Part("name") name: RequestBody,
-        @Part("desc") desc: RequestBody,
-        @Part("price") price: RequestBody,
-        @Part("per_kg") per_kg: RequestBody,
+        @Part("service_id") serviceIdBody: RequestBody,
+        @Part("name") nameBody: RequestBody,
+        @Part("desc") descBody: RequestBody,
+        @Part("price") priceBody: RequestBody,
+        @Part("per_kg") perKgBody: RequestBody,
         @Part photo: MultipartBody.Part
     ): Call<ApiResponse>
 
@@ -252,6 +259,6 @@ interface ApiService {
     fun deleteLayout(@Query("service_id") service_id: String): Call<ApiResponse>
 
     //Admin
-    @GET("/gettodaysale.php")
-    fun getTodaySale(): Call<List<SalesToday>>
+    @GET("/getsalestoday.php")
+    fun getTodaySale(): Call<Int>
 }

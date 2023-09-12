@@ -6,16 +6,16 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="6dp"
-    android:padding="6dp"
     app:cardCornerRadius="20dp"
-    app:cardElevation="5dp">
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="6dp">
+        android:layout_margin="10dp">
 
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="#Cuci1"
             android:textColor="#069FCD"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginStart="5dp"/>
 
@@ -35,8 +35,19 @@
             android:text="12/04/2023"
             android:textStyle="italic"
             android:textColor="#11BEF3"
-            android:textSize="14sp"
+            android:textSize="10sp"
             android:layout_below="@id/entryCode"
+            android:layout_marginStart="5dp" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selesai"
+            android:textStyle="italic"
+            android:textColor="#D81160"
+            android:textSize="10sp"
+            android:layout_below="@id/dateReceive"
             android:layout_marginStart="5dp" />
 
         <TextView
@@ -45,17 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="(Mencuci saja)"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_toRightOf="@id/entryCode"
             android:layout_marginStart="5dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:id="@+id/buttonDesc"
-            android:text="Detail"/>
 
     </RelativeLayout>
 

@@ -90,14 +90,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Layanan Cucian"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold"/>
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/asset1" />
 
                     <Button
                         android:id="@+id/btnService"
@@ -131,14 +132,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Barang Cucian"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold"/>
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/shirt" />
 
                     <Button
                         android:id="@+id/btnItem"
@@ -173,14 +175,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Pesanan Cucian"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold"/>
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/asset3" />
 
                     <Button
                         android:id="@+id/btnHistory"
@@ -215,14 +218,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Akun"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold"/>
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/man" />
 
                     <Button
                         android:id="@+id/btnAccount"
@@ -235,89 +239,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardLayout"
-                android:layout_width="160dp"
-                android:layout_height="220dp"
-                android:layout_below="@id/cardHistory"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="3dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pengisian layanan"
-                        android:textAlignment="center" />
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_menu_camera" />
-
-                    <Button
-                        android:id="@+id/btnLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Atur" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardLaundry"
-                android:layout_width="160dp"
-                android:layout_height="220dp"
-                android:layout_below="@id/cardAccount"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/cardServices"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="3dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Informasi Laundry"
-                        android:textAlignment="center" />
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_menu_camera" />
-
-                    <Button
-                        android:id="@+id/btnLaundry"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Atur" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
     </RelativeLayout>

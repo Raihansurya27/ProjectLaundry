@@ -9,16 +9,20 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/side_nav_bar" />
+        android:src="@drawable/side_nav_bar_2" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Laundry Ku"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Laundry Nasmi"
         android:textAlignment="center"
-        android:layout_margin="20dp"
         android:textSize="30dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="#00EAEA"/>
 
     <ImageView
         android:layout_width="300dp"
@@ -32,9 +36,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Copyright"
+        android:text="Copyright 2023"
         android:textAlignment="center"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#00EAEA"/>
 
 </RelativeLayout>

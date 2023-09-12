@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.raihan.projectlaundry.activitity.CalculationActivity
+import com.raihan.projectlaundry.activitity.history.HistoryActivity
 import com.raihan.projectlaundry.adapter.GridMainAdapter
 import com.raihan.projectlaundry.api.ApiClient
 import com.raihan.projectlaundry.databinding.FragmentHomeBinding
 import com.raihan.projectlaundry.model.ServiceModel
+import com.raihan.projectlaundry.model.UserModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +33,10 @@ class HomeFragment : Fragment() {
     private lateinit var gridAdapter: GridMainAdapter
     val apiService = ApiClient.apiService
     private lateinit var grid: GridView
+    private lateinit var history: TextView
+    lateinit var phoneNumber : String
+    lateinit var address: String
+    lateinit var username: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,25 +51,60 @@ class HomeFragment : Fragment() {
 
         val textView: TextView = binding.textHome
         grid = binding.gridHome
+        history = binding.btnHistory
 
         gridList = ArrayList<ServiceModel>()
         getData()
+
         val result = arguments
-//        if (result != null) {
-//            val navController = findNavController()
-//            navController.navigate(R.id.action_nav_home_to_nav_gallery, result)
-//        }
+        if (result != null) {
+            phoneNumber = result.getString("phone_number").toString()
+            apiService.getUser(phoneNumber).enqueue(object : Callback<List<UserModel>>{
+                override fun onResponse(
+                    call: Call<List<UserModel>>,
+                    response: Response<List<UserModel>>
+                ) {
+                    if (response.isSuccessful){
+                        val user = response.body()
+                        user!!.forEach {
+                            val title = "Selamat Datang\n ${it.username}"
+                            textView.text = title
+                            address = it.address
+                            username = it.username
+                        }
+                    }else{
+
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserModel>>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+        }
+
         grid.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            val bundle = Bundle()
             val intent = Intent(requireContext(), CalculationActivity::class.java)
+            val bundle = Bundle()
             bundle.putString("service", gridList[i].name)
             bundle.putString("service_id", gridList[i].service_id)
+            if (result != null) {
+                bundle.putString("username", username)
+                bundle.putString("phone_number", phoneNumber)
+                bundle.putString("address",address)
+            }
             intent.putExtras(bundle)
             startActivity(intent)
         }
 
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        history.setOnClickListener {
+            val intent = Intent(requireContext(), HistoryActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("phone_number", phoneNumber)
+            intent.putExtras(bundle)
+            startActivity(intent)
         }
 
         return root
@@ -101,11 +143,15 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        fun newInstance(bundle: Bundle): HomeFragment {
-            val fragment = HomeFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
+    fun onTextViewClicked(view: View) {
+        Toast.makeText(requireContext(), "Berhasil", Toast.LENGTH_SHORT).show()
     }
+
+//    companion object {
+//        fun newInstance(bundle: Bundle): HomeFragment {
+//            val fragment = HomeFragment()
+//            fragment.arguments = bundle
+//            return fragment
+//        }
+//    }
 }

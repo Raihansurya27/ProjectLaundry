@@ -50,6 +50,9 @@ class LoginActivity : AppCompatActivity() {
         val dialog = builder.create()
         var userRole = ""
 
+        val actionBar = supportActionBar
+        actionBar?.title = "Login"
+
 //        val progBar = findViewById<ProgressBar>(R.id.progBar)
 
         passwordLayout.setEndIconOnClickListener {
@@ -82,7 +85,6 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
 //                        val loginResponse = response.body()
                         builder.setTitle("Login Suskes")
-                        image.setImageResource(android.R.drawable.checkbox_on_background)
                         text.text = "Login sukses, tunggu sebentar"
                         dialog.show()
 
@@ -96,10 +98,10 @@ class LoginActivity : AppCompatActivity() {
                                     val data: List<UserModel>? = response.body()
                                     val bundle = Bundle()
                                     data!!.forEach { item ->
-                                        bundle.putString("username", item.username)
+//                                        bundle.putString("username", item.username)
                                         bundle.putString("phone_number", item.phone_number)
-                                        bundle.putString("address", item.address)
-                                        bundle.putString("picture","https://laundrynajmi.000webhostapp.com/${item.picture}")
+//                                        bundle.putString("address", item.address)
+//                                        bundle.putString("picture","https://laundrynajmi.000webhostapp.com/${item.picture}")
                                         userRole = item.role
                                     }
 
@@ -136,7 +138,7 @@ class LoginActivity : AppCompatActivity() {
                         // Lakukan sesuatu dengan pesan kesalahan
 
                         builder.setTitle("Login Gagal")
-                        image.setImageResource(android.R.drawable.ic_delete)
+//                        image.setImageResource(android.R.drawable.ic_delete)
                         text.setText("Inputan ada yang invalid atau salah.\nSilahkan cek kembali")
 
                         builder.setPositiveButton("OK") { dialog, _ ->

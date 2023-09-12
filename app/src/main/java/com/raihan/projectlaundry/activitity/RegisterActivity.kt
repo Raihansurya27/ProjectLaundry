@@ -60,6 +60,9 @@ class RegisterActivity : AppCompatActivity() {
         btnSelectImage = findViewById(R.id.btnSelectImage)
         imageView = findViewById(R.id.image)
 
+        val actionBar = supportActionBar
+        actionBar?.title = "Register"
+
         passwordLayout.setEndIconOnClickListener {
             val passwordVisible =
                 password.transformationMethod is PasswordTransformationMethod

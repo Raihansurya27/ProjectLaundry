@@ -10,9 +10,4 @@
         android:id="@+id/action_logout"
         android:orderInCategory="2"
         android:title="Log Out"/>
-    <item
-        android:id="@+id/action_coba2"
-        android:orderInCategory="3"
-        android:title="Coba 3"
-        app:showAsAction="never" />
 </menu>

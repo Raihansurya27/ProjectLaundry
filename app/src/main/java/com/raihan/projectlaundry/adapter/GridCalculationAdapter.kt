@@ -84,41 +84,26 @@ class GridCalculationAdapter(
         Desc.setText("Berat: ~${gridList[position].weight}Kg\n${gridList.get(position).desc}")
         Desc.breakStrategy = LineBreaker.BREAK_STRATEGY_SIMPLE
 
-//        btnMinus.setOnClickListener {
-//            substractionItem(gridList[position].item_id, position)
-////            val sumItem = itemSum[gridList[position].item_id]
-////            val sum = 1
-////            totalItem.text = (sum + sum).toString()
-////            notifyDataSetChanged()
-//            totalItem.setText("1")
-//            callbacks.total()
-//        }
-
-
-//        btnPlus.setOnClickListener{
-//            addItem(gridList[position].item_id, position)
-////            val sumItem = itemSum[gridList[position].item_id]
-////            val sum = 1
-////            totalItem.text = (sum + sum).toString()
-////            notifyDataSetChanged()
-//            totalItem.setText("2")
-//            callbacks.total()
-//        }
-
         totalItem.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (count > 0){
+                if (s.toString() == "" || s.toString().toInt() == 0){
+                    getItemSum(gridList[position].item_id, 0)
+                    getItemWeight(gridList[position].item_id,0,position)
+                }else{
                     getItemSum(gridList[position].item_id, s.toString().trim().toInt())
                     getItemWeight(gridList[position].item_id,s.toString().trim().toInt(),position)
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (s!!.isNotEmpty()){
+                if (s.toString() == "" || s.toString().toInt() == 0){
+                    getItemSum(gridList[position].item_id, 0)
+                    getItemWeight(gridList[position].item_id,0,position)
+                }else{
                     getItemSum(gridList[position].item_id, s.toString().trim().toInt())
                     getItemWeight(gridList[position].item_id,s.toString().trim().toInt(),position)
                 }
@@ -129,50 +114,17 @@ class GridCalculationAdapter(
         return view
     }
 
-    fun addItem(itemId:String, position: Int){
-//        val jumlahBarang = itemSum[item] ?: 0
-//        itemSum[item] = jumlahBarang + 1
-        val sumItem = itemSum[itemId]?: 0
-        itemSum[itemId] = sumItem + 1
-        totalWeight += gridList[position].weight
-        showMessage("hasil ${itemSum[itemId]}, $totalWeight")
-        totalItem.setText("${itemSum[itemId]?: 0}")
-    }
-
-    fun substractionItem(itemId:String, position: Int){
-        val sumItem = itemSum[itemId]?: 0
-        if (sumItem - 1 >= 0){
-            itemSum[itemId] = sumItem - 1
-            totalWeight -= gridList[position].weight
-            showMessage("hasil ${itemSum[itemId]}, $totalWeight")
-            totalItem.setText("${itemSum[itemId]?: 0}")
-        }
-    }
-
     fun getItemSum(itemId:String, sum:Int){
-//        var message = StringBuilder("Hasil ")
-//        item.forEach {
-//            if (itemSum[it.item_id]!! > 0) {
-//                message.append("\n ${it.name}: "+itemSum[it.item_id])
-//            }
-//        }
-////        showMessage(message.toString())
-//        callbacks.showResult(message.toString())
-        itemSum[itemId] = sum
-        showMessage(itemSum.toString())
+//        itemSum[itemId] = sum
+        callbacks.getTotalItem(itemId,sum)
+//        showMessage(itemSum.toString())
     }
 
     fun getItemWeight(itemId:String, sum:Int, position: Int){
         itemWeight[itemId] = gridList[position].weight * sum
-        showMessage(itemWeight.toString())
-    }
-
-    fun getTotalWeight():Float{
-        return itemWeight.values.sum()
-    }
-
-    fun Result(){
-        showMessage(itemSum.toString())
+        callbacks.getTotalWeight(itemWeight.values.sum())
+//        showMessage(itemWeight.toString())
+        callbacks.total()
     }
 
     fun showMessage(message:String){
@@ -180,9 +132,9 @@ class GridCalculationAdapter(
     }
 
     interface GridAdapterCallback {
-        fun onDeleteService(service_id: String)
-        fun onUpdateService(service_id: String)
-        fun showResult(message:String)
+        fun getTotalWeight(sumWeight:Float)
+        fun getTotalItem(itemId:String, sum:Int)
+        fun getItemDesc(message:String)
 
         fun total()
     }

@@ -7,13 +7,13 @@
 
     <ImageView
         android:layout_marginTop="20dp"
-        android:layout_width="300dp"
-        android:layout_height="240dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/imageDesc"
         android:layout_marginBottom="20dp"
         android:scaleType="fitXY"
-        android:src="@drawable/laundry_cartoon"/>
+        android:src="@drawable/asset1"/>
 
     <TextView
         android:id="@+id/textTitle"

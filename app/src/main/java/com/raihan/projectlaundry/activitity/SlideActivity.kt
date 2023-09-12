@@ -1,22 +1,18 @@
 package com.raihan.projectlaundry.activitity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.raihan.projectlaundry.R
 import com.raihan.projectlaundry.adapter.SliderAdapter
-import com.smarteist.autoimageslider.SliderView
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 
 class SlideActivity : AppCompatActivity() {
 
     // on below line we are creating a variable
     // for our array list for storing our images.
-    lateinit var imageUrl: ArrayList<String>
-
-    lateinit var textTitle: ArrayList<String>
 
     // on below line we are creating
     // a variable for our slider view.
@@ -25,8 +21,6 @@ class SlideActivity : AppCompatActivity() {
     // on below line we are creating
     // a variable for our slider adapter.
     lateinit var sliderAdapter: SliderAdapter
-
-    lateinit var textDesc: ArrayList<String>
 
     lateinit var buttonSkip: Button
 
@@ -38,27 +32,18 @@ class SlideActivity : AppCompatActivity() {
         sliderView = findViewById(R.id.slider)
         buttonSkip = findViewById(R.id.buttonSkip)
 
+        val actionBar = supportActionBar
+        actionBar?.title = "Selamat Datang"
+
         // on below line we are initializing
         // our image url array list.
-        imageUrl = ArrayList()
-        textTitle = ArrayList()
-        textDesc = ArrayList()
 
         // on below line we are adding data to our image url array list.
-        imageUrl =
-            (imageUrl + "https://practice.geeksforgeeks.org/_next/image?url=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fimg-practice%2Fbanner%2Fdsa-self-paced-thumbnail.png&w=1920&q=75") as ArrayList<String>
-        imageUrl =
-            (imageUrl + "https://practice.geeksforgeeks.org/_next/image?url=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fimg-practice%2Fbanner%2Fdata-science-live-thumbnail.png&w=1920&q=75") as ArrayList<String>
-        imageUrl =
-            (imageUrl + "https://practice.geeksforgeeks.org/_next/image?url=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fimg-practice%2Fbanner%2Ffull-stack-node-thumbnail.png&w=1920&q=75") as ArrayList<String>
+        val imageUrl = intArrayOf(R.drawable.asset1, R.drawable.asset2, R.drawable.asset3, R.drawable.asset4)
 
-        textTitle = (textTitle + "Halo 1") as ArrayList<String>
-        textTitle = (textTitle + "Halo 2") as ArrayList<String>
-        textTitle = (textTitle + "Halo 3") as ArrayList<String>
+        val textTitle = arrayOf("Rapi","Bersih","Harum","Murah")
 
-        textDesc = (textDesc + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.") as ArrayList<String>
-        textDesc = (textDesc + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua") as ArrayList<String>
-        textDesc = (textDesc + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua") as ArrayList<String>
+        val textDesc = arrayOf("Pakaian dilipat dengan rapi","Menggunakan deterjen ramah lingkungan dan bersih melawan kotoran","Menggunakan pewangi alami","Harga terjangkau")
 
         // on below line we are initializing our
         // slider adapter and adding our list to it.

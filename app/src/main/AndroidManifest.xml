@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,7 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectLaundry"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+<!--        <activity-->
+<!--            android:name=".activitity.HistoryActivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".activitity.history.HistoryActivity"
+            android:exported="false"
+            android:label="@string/title_activity_history" />
         <activity
             android:name=".activitity.service.UpdateServiceActivity"
             android:exported="false" />
@@ -27,10 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".activitity.item.ItemActivity"
-            android:exported="false" >
-
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".activitity.account.UpdateAccountActivity"
             android:exported="false" />
@@ -45,10 +49,7 @@
             android:exported="false" />
         <activity
             android:name=".activitity.service.ServiceActivity"
-            android:exported="false" >
-
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".activitity.SalesActivity"
             android:exported="false" />
@@ -60,9 +61,7 @@
             android:exported="false" />
         <activity
             android:name=".activitity.AdminActivity"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".activitity.CalculationActivity"
             android:exported="false" />
@@ -70,14 +69,14 @@
             android:name=".activitity.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.ProjectLaundry.NoActionBar" >
+            android:theme="@style/Theme.ProjectLaundry.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activitity.SlideActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -85,8 +84,7 @@
         <activity
             android:name=".activitity.SplashActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" >
-
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -96,18 +94,17 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
         </activity>
         <activity
             android:name=".activitity.RegisterActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activitity.LoginActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
